@@ -42,6 +42,7 @@ else
 	{
 	    $_SESSION['pseudo'] = $data['pseudo'];
 	    $_SESSION['role'] = $data['role_id'];
+	    $_SESSION['utilisateur_id'] = $data['id'];
 	    $_SESSION['password'] = $data['password'];
 	    $message = '<p>Bienvenue '.$data['pseudo'].', 
 			vous êtes maintenant connecté!</p>

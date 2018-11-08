@@ -3,41 +3,42 @@
     include('includes\header.php');
     include('includes\connexion.php');
 
-//FAIRE UNE REQUETE POUR DIRE QU IL PEUT CREER L ARTICLE SI IL EST INSCRIT (SESSION['role'])
     if (isset($_SESSION['role'])) {
-        $request = $bdd->prepare('INSERT INTO article(titre, contenu, image, utilisateur_id, date_creation) VALUES( :titre, :contenu, :image, :utilisateur_id, :date_creation)');
+        $request = $bdd->prepare('INSERT INTO article(titre, contenu, image, utilisateur_id, date_creation, categorie_id) 
+                                    VALUES( :titre, :contenu, :image, :utilisateur_id, :date_creation, :categorie_id)');
 
         if (isset($_POST["submit"]) && (!empty($_POST["submit"])))
         {
-            var_dump($_POST);
-
+        
+        $date = date("Y-m-d H:i:s");
         $request->execute(array(
           'titre' => $_POST["titre"],
           'contenu' => $_POST["contenu"],
           'image' => $_POST["image"],
-          'utilisateur_id' => $request["utilisateur_id"],
-          'date_creation' =>  $_POST['date_creation']
+          'utilisateur_id' => $_SESSION['utilisateur_id'],
+          'date_creation' =>  $date,
+          'categorie_id' => $_POST['categorie_id']
           ));
         }
-
         ?>
         <div class="form-style-8">
             <h2>création de l'article</h2>
-            <form action="index.php" method="post">
+            <form action="" method="post">
             <p>
                 <label>Titre</label>
                 <input type="text" name="titre" /><br>
+                 <label>Categorie</label>
+                <input type="text" name="categorie_id" /><br>
                 <label>Image</label>
                 <input type="file" name="image" /><br>
                 <label>Contenu</label>
                 <textarea name="contenu" rows=4 cols=40 > </textarea><br>
-                <label>Date</label>
-                <input type="date" name="date" /><br>
                 <input type="submit" name="submit" value="Valider" /><br>
             </p>
             </form>
         </div>
     <?php
+
         $request->closeCursor();
     }
     else
