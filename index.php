@@ -12,7 +12,7 @@
  	 $result = $bdd->query('SELECT * FROM article LEFT JOIN categorie on article.categorie_id = categorie.id WHERE article.visibilite = 1');
  	 $liste_articles = $result->fetchAll();
 
-	<?php 
+	
 	$result = $bdd->query('SELECT * FROM article left join utilisateur on utilisateur.id = article.utilisateur_id');
 	$liste_article = $result->fetchAll();
 	foreach($liste_article as $article){
@@ -49,12 +49,8 @@
 	if ($article["role_id"] == 1 && $article["utilisateur_id"] == $_SESSION['id']) {
 		echo '<a href="modif_article.php" > Modifier l\'article</a>';
 	}
-		}
-	}
 
-	?>
-
-<?php 
+}
 }
  ?>
 </div>
