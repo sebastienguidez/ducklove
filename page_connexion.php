@@ -43,6 +43,7 @@ else
 	    $_SESSION['pseudo'] = $data['pseudo'];
 	    $_SESSION['id'] = $data['id'];
 	    $_SESSION['role'] = $data['role_id'];
+	    $_SESSION['utilisateur_id'] = $data['id'];
 	    $_SESSION['password'] = $data['password'];
 	    header('Location: index.php');  
 	}

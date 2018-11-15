@@ -8,6 +8,9 @@
     <h3>la page d'accueil</h3>
 
     <a href="create_article.php">Créer un article</a>
+<?php
+ 	 $result = $bdd->query('SELECT * FROM article LEFT JOIN categorie on article.categorie_id = categorie.id WHERE article.visibilite = 1');
+ 	 $liste_articles = $result->fetchAll();
 
 	<?php 
 	$result = $bdd->query('SELECT * FROM article left join utilisateur on utilisateur.id = article.utilisateur_id');
@@ -51,6 +54,9 @@
 
 	?>
 
+<?php 
+}
+ ?>
 </div>
     <?php
     $result->closeCursor();
