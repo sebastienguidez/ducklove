@@ -41,25 +41,14 @@ else
 	if ($data['password'] == crypt($_POST["password"], 'toto')) // Acces OK !
 	{
 	    $_SESSION['pseudo'] = $data['pseudo'];
+	    $_SESSION['id'] = $data['id'];
 	    $_SESSION['role'] = $data['role_id'];
 	    $_SESSION['password'] = $data['password'];
-	    $message = '<p>Bienvenue '.$data['pseudo'].', 
-			vous êtes maintenant connecté!</p>
-			<p>Cliquez <a href="./index.php">ici</a> 
-			pour revenir à la page d accueil</p>';  
+	    header('Location: index.php');  
 	}
 	else // Acces pas OK !
 	{
-		echo $data['pseudo']; 
-		echo $_POST['pseudo']; 
-		echo $_POST['password']; 
-		echo $data['password'];
-	    $message = '<p>Une erreur s\'est produite 
-	    pendant votre identification.<br /> Le mot de passe ou le pseudo 
-            entré n\'est pas correcte.</p><p>Cliquez <a href="./page_connexion.php">ici</a> 
-	    pour revenir à la page précédente
-	    <br /><br />Cliquez <a href="./index.php">ici</a> 
-	    pour revenir à la page d accueil</p>';
+	echo "vous n avez pas acces";
 	}
     $query->CloseCursor();
     }

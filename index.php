@@ -9,10 +9,51 @@
 
     <a href="create_article.php">Créer un article</a>
 
+	<?php 
+	$result = $bdd->query('SELECT * FROM article left join utilisateur on utilisateur.id = article.utilisateur_id');
+	$liste_article = $result->fetchAll();
+	foreach($liste_article as $article){
+		if ($article["visibilite"] == 1) {
+	?>
+	<article>
+		<p>
+			<?php
+			echo $article["titre"];
+			?>
+		</p>
+		<p>
+			<?php
+			echo $article["image"];
+			?>
+		</p>
+		<p>
+			<?php
+			echo $article["contenu"];
+			?>
+		</p>
+		<p>
+			<?php
+			echo $article["date_creation"];
+			?>
+		</p>
+		<p>
+			<?php
+			echo $article["pseudo"];
+			?>
+		</p>		
+	</article>
+	<?php
+	if ($article["role_id"] == 1 && $article["utilisateur_id"] == $_SESSION['id']) {
+		echo '<a href="modif_article.php" > Modifier l\'article</a>';
+	}
+		}
+	}
 
+	?>
 
 </div>
     <?php
+    $result->closeCursor();
       include('includes\footer.php');
     ?>
    

@@ -62,22 +62,20 @@ echo '
 <?php
 	if (isset($_POST['submit'])) {
 		
-?>
-	<form action="profil.php" method="post">
+
+	echo '<form action="profil.php" method="post">
 		<p>
 		 	<label>Nom</label>
-            <input type="text" name="nom" /><br>
+            <input type="text" name="nom" value="'. $info_perso['nom'].'" /><br>
             <label>Prénom</label>
-            <input type="text" name="prenom" /><br>
-            <label>password</label>
-            <input type="text" name="password" /><br>
+            <input type="text" name="prenom" value="'. $info_perso['prenom'].'"/><br>           
             <label>mail</label>
-            <input type="email" name="mail" /><br>
+            <input type="email" name="mail" value="'. $info_perso['mail'].'"/><br>
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit_update" value="submit">valider la modification</button>
 		
 		</p>
-	</form>
-<?php 
+	</form>';
+
 }
 	if (isset($_POST['submit_update'])){
      $query = $bdd->prepare('UPDATE utilisateur SET nom = ?,prenom = ?,mail= ?, password = ? where pseudo = ?');
